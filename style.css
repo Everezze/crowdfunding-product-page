@@ -1,4 +1,4 @@
-:root{
+	:root{
 	--moderate-cyan: hsl(176, 50%, 47%);
 	--dark-cyan: hsl(176, 72%, 28%);
 
@@ -28,9 +28,9 @@ main{
 	margin-top: -4rem;
 }
 
-main>*+*{
+/*main>*+*{
 	margin-top: 1.5rem;
-}
+}*/
 
 h1,h2,p{
 	margin: 0;
@@ -90,6 +90,10 @@ button{
 	cursor: pointer;
 }
 
+button:hover{
+	background: var(--btn-hover,var(--dark-cyan));
+}
+
 svg{
 	vertical-align: bottom;
 }
@@ -145,6 +149,10 @@ nav.active .hamb-menu{
 	border-radius: .5rem;
 }
 
+.container + .container{
+	margin-top: 1.5rem;
+}
+
 .container .title{
 	color: var(--black);
 }
@@ -169,10 +177,7 @@ nav.active .hamb-menu{
 }
 
 .bookmark-container>button{
-	/*background: var(--bg-color);
-	color: var(--fg-color);*/
 	padding: 0 2.5rem;
-	/*border-radius: 2rem;*/
 }
 
 .bookmark{
@@ -185,6 +190,18 @@ nav.active .hamb-menu{
 .bookmark span{
 	margin: 0 1.5rem 0 1rem;
 	display: none;
+}
+
+.bookmark.active{
+	color: var(--dark-cyan);
+}
+
+.bookmark.active circle{
+	fill: var(--dark-cyan);
+}
+
+.bookmark.active path{
+	fill: white;
 }
 
 .headline h2{
@@ -228,6 +245,14 @@ nav.active .hamb-menu{
 	border-radius: 2rem;
 	margin: 2rem 0 0;
 	position: relative;
+	overflow: hidden;
+}
+
+.filling-bar{
+	position: absolute;
+	inset: 0;
+	border-radius: 2rem;
+	background: var(--moderate-cyan);
 }
 
 .about-title{
@@ -237,6 +262,10 @@ nav.active .hamb-menu{
 
 .pledge-container{
 	--btn-padding: 1rem 2rem;
+}
+
+.pledge-container.active{
+	border: 2px solid var(--moderate-cyan);
 }
 
 .pledge-container button{
@@ -251,9 +280,9 @@ nav.active .hamb-menu{
 	font-size: 1rem;
 }
 
-.pledge-container > *+*{
+/*.pledge-container > *+*{
 	margin-top: 1.5rem;
-}
+}*/
 
 .pledge-min{
 	color: var(--moderate-cyan);
@@ -284,23 +313,25 @@ nav.active .hamb-menu{
 	padding: 0 1.5rem;
 	display: none;
 	background: var(--bg-popup);
+	overflow: scroll;
 }
 
 .popup.active{
-	display: initial;
+	display: block;
 }
 
 .close-modal{
 	position: absolute;
 	top:2rem;
 	right: calc(2rem - 15px);
+	cursor: pointer;
 }
 
 .popup article{
 	/*position: absolute;*/
-	max-width: 750px;
-	margin: 0 auto;
-	position: relative;
+	max-width: calc(750px - 3rem);
+	width: 100%;
+	margin: 7.5rem auto;
 }
 
 .left-desk{
@@ -320,12 +351,17 @@ nav.active .hamb-menu{
 	padding-inline: 1.5rem;
 }
 
+.popup b{
+	font-size: 1.25rem;
+}
+
 .input-container p{
 	text-align: center;
 }
 
 .cta{
 	border-top: inherit;
+	display: none;
 }
 
 .cta form{
@@ -351,7 +387,40 @@ nav.active .hamb-menu{
 	margin-left: min(4vw,1rem);
 }
 
-@media screen and (min-width:850px) {
+.circle-check-container{
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+	padding: .3rem;
+	border: var(--container-border);
+	cursor: pointer;
+}
+
+.circle-check{
+	height: 100%;
+	border-radius: 50%;
+	background: var(--moderate-cyan);
+	display: none;
+}
+
+.pledge-container.active .circle-check{
+	display: block;
+}
+
+.pledge-container.active .cta{
+	display: block;
+}
+
+.first-part{
+	display: flex;
+	align-items: center;
+}
+
+.header-title{
+	margin-left: 1.25rem;
+}
+
+@media screen and (min-width:850px){
 	.hamb-menu{
 		flex-direction: row;
 		display: flex;
@@ -436,5 +505,21 @@ nav.active .hamb-menu{
 
 	.input-container form{
 		width: min-content;
+	}
+
+	.header-title{
+		display: flex;
+	}
+
+	.header-title span{
+		margin-left: 1rem;
+	}
+
+	.popup .pledge-container>p{
+		padding-left: calc(1.5rem + 45px);
+	}
+
+	.popup.active{
+		align-items: center;
 	}
 }
