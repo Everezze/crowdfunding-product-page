@@ -1,4 +1,4 @@
-	:root{
+:root{
 	--moderate-cyan: hsl(176, 50%, 47%);
 	--dark-cyan: hsl(176, 72%, 28%);
 
@@ -26,6 +26,7 @@ main{
 	padding: 0 1.5rem;
 	margin: 0 auto;
 	margin-top: -4rem;
+	margin-bottom: 7.5rem;
 }
 
 /*main>*+*{
@@ -60,6 +61,7 @@ main > *{
 
 nav{
 	position: relative;
+	z-index: 1;
 }
 
 ul{
@@ -75,13 +77,13 @@ header{
 	right: 0;
 	justify-content: space-between;
 	align-items: center;
-	padding: 1.5rem;
+	padding: 1.5rem min(6.5vw,13.5rem);
 }
 
 button{
 	border-radius: 2rem;
-	background: var(--btn-fg,var(--moderate-cyan));
-	color: var(--btn-bg,white);
+	background: var(--btn-bg,var(--moderate-cyan));
+	color: var(--btn-fg,white);
 	border: none;
 	padding: 0;
 	font-size: 1rem;
@@ -117,6 +119,7 @@ input{
 	background: white;
 	width: min(calc(100vw - 3rem), 400px);
 	border-radius: .5rem;
+	box-shadow: 2px -15px 50px 68px var(--bg-popup);
 }
 
 .hamb-menu a{
@@ -314,10 +317,15 @@ nav.active .hamb-menu{
 	display: none;
 	background: var(--bg-popup);
 	overflow: scroll;
+	align-items: center;
 }
 
 .popup.active{
 	display: block;
+}
+
+.popup.active.flex{
+	display: flex;
 }
 
 .close-modal{
@@ -330,9 +338,10 @@ nav.active .hamb-menu{
 .popup article{
 	/*position: absolute;*/
 	max-width: calc(750px - 3rem);
-	width: 100%;
+	/*width: 100%;*/
 	margin: 7.5rem auto;
 }
+
 
 .left-desk{
 	display: none;
@@ -420,6 +429,41 @@ nav.active .hamb-menu{
 	margin-left: 1.25rem;
 }
 
+.popup .thank-popup{
+	border: none;
+	text-align: center;
+	max-width: 540px;
+	padding: 3rem 0;
+	display: none;
+	margin: 0 auto;
+}
+
+.thank-popup .title{
+	margin: 1.5rem 0;
+	font-size: 1.2rem;
+}
+
+.popup .thank-popup.active{
+	display: block;
+}
+
+.popup .container.hide{
+	display: none;
+}
+
+.container.sellout{
+	opacity: .5;
+}
+
+article .pledge-container .container.sellout button{
+	--btn-bg: var(--dark-gray);
+}
+
+.pledge-container .sellout button:hover,
+.pledge-container.sellout .circle-check-container{
+	pointer-events: none;
+}
+
 @media screen and (min-width:850px){
 	.hamb-menu{
 		flex-direction: row;
@@ -427,6 +471,7 @@ nav.active .hamb-menu{
 		position: static;
 		width: auto;
 		background: initial;
+		box-shadow: none;
 	}
 
 	.hamb-menu li+li{
@@ -515,11 +560,25 @@ nav.active .hamb-menu{
 		margin-left: 1rem;
 	}
 
-	.popup .pledge-container>p{
+	.popup .container:first-child .pledge-container>p{
 		padding-left: calc(1.5rem + 45px);
 	}
 
-	.popup.active{
+	/*.popup.active{
 		align-items: center;
+	}*/
+
+	.thank-popup p{
+		font-size: .95rem;
+	}
+
+	.popup .thank-popup >*{
+		padding-inline: 3.2rem;
+	}
+}
+
+@media screen and (min-width:1300px) {
+	header{
+		padding: 3rem min(12vw,13.5rem);
 	}
 }
